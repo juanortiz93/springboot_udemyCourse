@@ -13,16 +13,26 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.juan.curso.springboot.webapp.springboot_web.models.User;
+import com.juan.curso.springboot.webapp.springboot_web.models.dto.UserDto;
 
 
 @RestController
 @RequestMapping("/api")
 public class UserRestController {
 
-    @GetMapping(path = "/details")
-   
-    
-    public Map<String, Object> details(){
+    @GetMapping(path = "/details")     
+    public UserDto details(){
+
+        User user = new User("Juan Carlos", "Ortiz");
+        UserDto userDto = new UserDto();       
+        userDto.setUser(user);
+        userDto.setTitle("Hola Mundo Spring Boot!");
+
+        return userDto;
+    }
+
+    @GetMapping(path = "/details-map")     
+    public Map<String, Object> detailsMap(){
 
         User user = new User("Juan Carlos", "Ortiz");
 
@@ -33,7 +43,5 @@ public class UserRestController {
 
         return body;
     }
-
-
 
 }
